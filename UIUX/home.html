@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollander Coffee - The Perfect Brew</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f1e8;
+            color: #333;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #FFE3BB;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--brown-dark);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #8B4513;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                        url('backround.jpg') center/cover;
+            color: white;
+            padding: 100px 50px;
+            text-align: left;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .hero .btn {
+            background-color: #ff770f;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .hero .btn:hover {
+            background-color: #ab4a0084;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background-color: #FFF5DC;
+            padding: 60px 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* Menu preview cards */
+        .menu-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .menu-card {
+            background: linear-gradient(180deg, #ffffff 0%, #fff7ef 100%);
+            border-radius: 14px;
+            padding: 14px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .menu-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.12)}
+
+        .menu-card img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px}
+
+        .menu-card h4{font-size:18px;color:#4a2b18;margin-bottom:6px}
+
+        .menu-card .price{color:#8B4513;font-weight:700;margin-bottom:10px}
+
+        .order-btn{display:inline-block;background:#ff770f;color:white;padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:700}
+
+
+        .menu-content h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .menu-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            background-color: #5D4037;
+            color: white;
+            padding: 40px 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .why-choose h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .why-choose p {
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .why-choose-image img {
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        /* Promo Section */
+        .promo-section {
+            background: linear-gradient(180deg, #FFF8ED 0%, #FFF5DC 100%);
+            padding: 60px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .promo-card {
+            max-width: 1100px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 220px 1fr 360px;
+            gap: 26px;
+            align-items: center;
+            background: linear-gradient(180deg, #ffffff 0%, #fffaf2 100%);
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(45,33,24,0.08);
+            position: relative;
+            overflow: visible;
+        }
+
+        .promo-badge{
+            background: linear-gradient(135deg,#5D4037);
+            color:#ffffff;
+            border-radius:14px;
+            padding:18px 12px;
+            text-align:center;
+            font-weight:900;
+            font-size:40px;
+            line-height:1;
+            box-shadow:0 8px 30px rgba(212,175,55,0.18);
+        }
+
+        .promo-badge span{display:block;font-size:14px;font-weight:700;margin-top:6px}
+
+        .promo-info h3{font-size:24px;color:#3b2a21;margin-bottom:8px}
+        .promo-info p{color:#6b5b50;line-height:1.6;margin-bottom:14px}
+
+        .promo-visual img{width:100%;height:220px;object-fit:cover;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+
+        .promo-cta .btn{background:#ff770f;padding:12px 22px;border-radius:999px;font-weight:800;color:white;text-decoration:none;transition:background-color .3s}
+
+
+        /* Decorative coffee bean */
+
+
+        @media (max-width:900px){
+            .promo-card{grid-template-columns:1fr; padding:18px}
+            .promo-badge{margin:0 auto 10px;font-size:36px}
+            .promo-visual{order:3}
+        }
+
+        /* Recommendations Section */
+        .recommendations {
+            background-color: #5D4037;
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+        .recommendations h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #ffffff;
+        }
+
+        .recommendation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .recommendation-card {
+            background-color: #f5f1e8;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .recommendation-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .recommendation-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C2C2C;
+            color: white;
+            padding: 30px 50px;
+            text-align: center;
+            border-top: 1px solid #444;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .footer-content h4 {
+            margin-bottom: 15px;
+            color: #D4AF37;
+        }
+
+        .footer-content p {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            font-size: 12px;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            align-items: center;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            background: transparent;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: background .15s ease, transform .12s ease;
+            font-weight: 600;
+        }
+
+        .social-icons a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+
+        .social-icons svg{width:20px;height:20px;flex:0 0 20px}
+
+        /* brand-colors for icons */
+        .icon-fb{color:#1877F2}
+        .icon-ig{color:#C13584}
+        .icon-tw{color:#1DA1F2}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 50px 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .menu-section,
+            .why-choose,
+            .promo-section {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+
+            .recommendation-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">☕ Hollander Coffee</div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Hollander<br>the Perfect<br>Brew!</h1>
+        <p>Kopi tidak hanya sekedar minuman,<br>
+           Tapi dengan coffee dapat memiliki<br>
+           rasa yang indah dan nikmat.</p>
+            <a class="btn" href="menu.html">Beli</a>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section">
+        <div class="menu-content">
+            <h2>Menu Cafe Hollander</h2>
+            <p style="font-size: 18px; margin-top: 20px; color: #8B4513;">
+                <strong>Coffee</strong>
+            </p>
+            <p style="margin-top: 15px; line-height: 1.8; color: #666;">
+                Koleksi kopi premium kami dipilih langsung dari perkebunan terbaik di berbagai belahan dunia. Setiap biji kopi telah melalui proses seleksi ketat untuk memastikan kualitas terbaik bagi pelanggan setia kami.
+            </p>
+            <div style="margin-top:20px">
+                <a class="order-btn" href="menu.html">Lihat Semua Menu</a>
+            </div>
+        </div>
+        <div class="menu-image">
+            <div class="menu-preview">
+                <div class="menu-card">
+                    <img src="americano.jpg" alt="Americano">
+                    <h4>Americano</h4>
+                    <div class="price">Rp 25.000</div>
+                    <a class="order-btn" href="menu.html" aria-label="Pesan Americano">Pesan</a>
+                </div>
+
+                <div class="menu-card">
+                    <img src="Espresso.jpg" alt="Espresso">
+                    <h4>Espresso</h4>
+                    <div class="price">Rp 20.000</div>
+                    <a class="order-btn" href="menu.html" aria-label="Pesan Espresso">Pesan</a>
+                </div>
+
+                <div class="menu-card">
+                    <img src="cappucino.jpg" alt="Cappuccino">
+                    <h4>Cappuccino</h4>
+                    <div class="price">Rp 30.000</div>
+                    <a class="order-btn" href="menu.html" aria-label="Pesan Cappuccino">Pesan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose">
+        <div class="why-choose-image">
+            <img src="cafee.jpg" alt="Premium Coffee">
+        </div>
+        <div class="why-choose-content">
+            <h2>Why Choose<br>Us?</h2>
+            <p>✓ Kopi berkualitas premium dari berbagai negara<br><br>
+               ✓ Dipilih langsung dari petani lokal terpercaya<br><br>
+               ✓ Proses roasting dilakukan oleh ahli berpengalaman<br><br>
+               ✓ Setiap hari kami sajikan kopi segar dengan cita rasa yang konsisten dan sempurna untuk kepuasan Anda.</p>
+        </div>
+    </section>
+
+    <!-- Promo Section -->
+    <section class="promo-section">
+        <div class="promo-card">
+                <div class="promo-badge">50%<span>20-29 Desember 2025</span></div>
+
+                <div class="promo-info">
+                    <h3>HALF PRICE FRIDAY</h3>
+                    <p>Nikmati potongan 50% untuk menu pilihan setiap hari Jumat. Cicipi varian kopi premium kami — aroma segar dan cita rasa seimbang, sempurna untuk memulai hari.</p>
+                    <div class="promo-cta"><a class="btn" href="menu.html">Pesan Sekarang</a></div>
+                </div>
+
+                <div class="promo-visual">
+                    <img src="Caramel.jpg" alt="Varian Kopi Premium">
+                </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section class="recommendations" id="menu">
+        <h2>Rekomendasi<br>Untukmu!</h2>
+        <div class="recommendation-grid">
+            <div class="recommendation-card" onclick="addToCart('Espresso', 20000, 'https://images.unsplash.com/photo-1447933601403-0c6688bcf566?w=400')">
+                <img src="Espresso.jpg" alt="Espresso">
+                <h3>Espresso</h3>
+                <p>Kopi pekat dengan aroma kuat dan rasa yang intens. Sempurna untuk Anda yang menyukai cita rasa kopi asli.</p>
+            </div>
+            <div class="recommendation-card" onclick="addToCart('Americano', 25000, 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400')">
+                <img src="americano.jpg" alt="Americano">
+                <h3>Americano</h3>
+                <p>Espresso yang diencerkan dengan air panas. Memberikan rasa yang lebih ringan namun tetap kaya akan aroma kopi.</p>
+            </div>
+            <div class="recommendation-card" onclick="addToCart('Gula Aren', 30000, 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400')">
+                <img src="gulaaren.jpg" alt="Gula Aren">
+                <h3>Gula Aren</h3>
+                <p>Kopi tradisional dengan tambahan gula aren khas Indonesia. Memberikan manisnya alami dan kehangatan yang sempurna.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div>
+                <h4>📍 Lokasi</h4>
+                <p>Jl. Kopi Nikmat No. 123<br>Jakarta, Indonesia<br>DKI Jakarta 12345</p>
+            </div>
+            <div>
+                <h4>📞 Kontak</h4>
+                <p>Telepon: 0851-9896-0882<br>Email: hollander@gmail.com<br>WhatsApp: 0851-9896-0882</p>
+            </div>
+            <div>
+                <h4>🌐 Ikuti Kami</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/diva.g.nayaka.3" aria-label="Facebook">
+                        <svg class="icon-fb" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <path d="M22 12C22 6.48 17.52 2 12 2S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H8.9v-2.89h1.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.87h2.74l-.44 2.89h-2.3v6.99C18.34 21.13 22 17 22 12z" fill="#1877F2"/>
+                        </svg>
+                        <span>Facebook</span>
+                    </a>
+
+                    <a href="https://www.instagram.com/galih_dgn/" aria-label="Instagram">
+                        <svg class="icon-ig" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <defs>
+                                <linearGradient id="igG" x1="0" x2="1" y1="0" y2="1">
+                                    <stop offset="0%" stop-color="#f58529"/>
+                                    <stop offset="50%" stop-color="#dd2a7b"/>
+                                    <stop offset="100%" stop-color="#515bd4"/>
+                                </linearGradient>
+                            </defs>
+                            <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igG)" />
+                            <circle cx="12" cy="12" r="3.8" fill="#fff" />
+                            <circle cx="17.2" cy="6.8" r="0.9" fill="#fff" />
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+
+                    <a href="#" aria-label="Twitter">
+                        <svg class="icon-tw" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.3 3.9A12.14 12.14 0 0 1 3.15 4.6a4.28 4.28 0 0 0 1.32 5.71 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.43 4.2 4.3 4.3 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.97A8.59 8.59 0 0 1 2 19.54 12.11 12.11 0 0 0 8.29 21c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.36-.02-.54A8.36 8.36 0 0 0 22.46 6z" fill="#1DA1F2"/>
+                        </svg>
+                        <span>Twitter</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Hollander Coffee. All Rights Reserved. | Dibuat dengan ❤️ untuk pecinta kopi Indonesia</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load cart dari localStorage
+        function loadCart() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
+        }
+
+        // Save cart ke localStorage
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Add to cart
+        function addToCart(name, price, image) {
+            const cart = loadCart();
+            
+            // Check if item already exists
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+
+            saveCart(cart);
+            alert(`${name} ditambahkan ke keranjang!`);
+            window.location.href = 'transaksi.html';
+        }
+
+        // Make recommendation cards clickable
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.recommendation-card');
+            cards.forEach(card => {
+                card.style.cursor = 'pointer';
+            });
+        });
+    </script>
+</body>
+</html>
